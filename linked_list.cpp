@@ -125,6 +125,54 @@ class linkedlist
                 }
             }
         }
+        
+        void insert_after_pos(T n, int pos)
+	    {
+		Node<T>* temp = head;
+		Node<T>* N = new Node<T>(element);
+		
+		int index = 0;
+		
+		if(head==NULL)
+		{
+			cout<<"\nInvalid Position";
+		}
+		
+		else if(head==tail)
+		{
+			tail->next=N;
+			tail=N;
+		}
+		else
+		{
+			while(1)
+			{
+				index++;
+				if(index==pos)
+					break;
+				temp=temp->next;
+				
+				if(temp->next==NULL)
+				{
+					cout<<"\nOUT";
+					break;
+				}
+				
+			}
+			
+			if(temp->next==NULL)
+			{
+				tail->next=N;
+				tail=N;
+			}
+			else
+			{
+				N->next=temp->next;
+				temp->next=N;
+			}
+		}
+		
+	}
         void search(T n)
         {
             int k=0;
@@ -161,7 +209,7 @@ class linkedlist
 };
 int main()
 {
-    int n,q;
+    int n,q,pos;
     char e;
     char a='y';
     linkedlist<char> list;
@@ -175,6 +223,7 @@ int main()
                 <<"4. Delete the element from the tail\n"
                 <<"5. Search the element in the linked list\n"
                 <<"6. Traverse the linked list\n";
+                <<"7. Insert element after N pos\n"; 
             cout<<"\n\nEnter your choice: ";
             cin>>q;
             switch (q)
@@ -213,6 +262,14 @@ int main()
                 case 6:
                     list.traverse();
                     break;
+                
+                case 7: 
+                    cout<<"Enter Element: ";
+				    cin>>n;
+				    cout<<"\nEnter Position: ";
+				    cin>>pos;
+				    insert_after_pos(n,pos);
+				    break;
             }
             cout<<"\n\nDo you want to continue if yes press 'y' ,if no press 'n': ";
             cin>>a;    

@@ -74,6 +74,22 @@ class linkedlist
                 }
             }
         }
+        
+        int total()
+	    {
+		Node<t> *temp = head;
+		int count =0;
+		
+		while(temp!=NULL)
+		{
+			count = count+1;
+			temp = temp->next;
+			
+		}
+		
+		return count;
+	    }
+    
         void del_from_head()
         {
             if(head==NULL)
@@ -209,7 +225,11 @@ int main()
                 <<"4. Delete the element from the tail\n"
                 <<"5. Search the element in the linked list\n"
                 <<"6. Traverse the linked list\n";
+
                 <<"7. Inser element befor N pos";
+
+                <<"7. Total number of elements in the linked list\n";
+
             cout<<"\n\nEnter your choice: ";
             cin>>q;
             switch (q)
@@ -248,6 +268,7 @@ int main()
                 case 6:
                     list.traverse();
                     break;
+
                 
                 case 7:
                     cout<<"Enter Element: ";
@@ -256,6 +277,11 @@ int main()
 				    cin>>pos;
 				    insert_before_pos(n,pos);
 				    break;
+
+                case 7:
+                    cout<<"Total number of elements in list is: "<<list.total()<<endl;
+                    break;
+
             }
             cout<<"\n\nDo you want to continue if yes press 'y' ,if no press 'n': ";
             cin>>a;    

@@ -188,37 +188,20 @@ class DLLlinkedlist
                 }
             }
         }
-        void search(T n)
-        {
-            int k=0;
-            Node<T>* temp;
-            temp=tail;
-            if(tail==NULL)
-            {
-                cout<<"List is empty";
-                return;
-            }
-            else
-            {
-                while (temp!=NULL)
-                {
-                    if(temp->data==n)
-                    {
-                        k=1;
-                        break;  
-                    }
-                    temp=temp->prev;
-                }
-                if(k==1)
-                {
-                    cout<<"element found\n";            
-                }
-                else
-                {
-                    cout<<"element not found\n";
-                }
-            }    
-        }
+        bool search(T n)
+	    {
+		    Node<T> *temp;
+		    temp=head;
+		
+		    while(temp!=NULL)
+		    {
+			    if(temp->info == element)
+				    return true;
+			    temp = temp->next;
+	    	} 
+		    return false;		
+	    }
+    
         void ispalindrome()
         {
             Node<T>* temp=head;
@@ -349,8 +332,13 @@ int main()
                     cout<<"\nEnter the element to be searched ";
                     cin>>n;
                     cout<<endl;
-                    list.search(n);
-                    break;
+                    if(list.search(n)==1)
+					{
+						cout<<"\nElement is Present in List\n";
+					}
+					else
+						cout<<"\nElement is not present in the List\n";
+						break;
 
                 case 6:
                     list.traverse();

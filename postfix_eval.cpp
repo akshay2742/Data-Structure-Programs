@@ -170,3 +170,82 @@ int main()
     postfixeval(a);
 }
 
+//Using stack.h
+#include<iostream>
+using namespace std;
+#include "stack.h"
+
+void postfix_evaluation(string exp)
+{
+  Stack <int> s;
+  int l = exp.length();
+  for(int i=0; i<l; i++)
+  {
+    if(exp[i] != '+' && exp[i] != '-' && exp[i] != '*' && exp[i] != '/' && exp[i] != '^')
+    {
+      exp[i] = (int)exp[i]-48;
+      s.push(exp[i]);
+    }
+    else if(exp[i] == '+')
+    {
+      int ele1 = s.top_ele();
+      s.pop();
+      int ele2 = s.top_ele();
+      s.pop();
+      int element = ele1 + ele2;
+      s.push(element);
+    }
+    else if(exp[i] == '-')
+    {
+      int ele1 = s.top_ele();
+      s.pop();
+      int ele2 = s.top_ele();
+      s.pop();
+      int element = ele2 - ele1;
+      s.push(element);
+    }
+    else if(exp[i] == '*')
+    {
+      int ele1 = s.top_ele();
+      s.pop();
+      int ele2 = s.top_ele();
+      s.pop();
+      int element = ele1 * ele2;
+      s.push(element);
+    }
+    else if(exp[i] == '/')
+    {
+      int ele1 = s.top_ele();
+      s.pop();
+      int ele2 = s.top_ele();
+      s.pop();
+      float element = ele2 / ele1;
+      s.push(element);
+    }
+    else if(exp[i] == '^')
+    {
+      int ele1 = s.top_ele();
+      s.pop();
+      int ele2 = s.top_ele();
+      s.pop();
+      int element = 1;
+      for(int i=0; i<ele1; i++)
+        element *= ele2;
+      s.push(element);
+    }
+  }
+  float res = s.top_ele();
+  cout<<res;
+}
+
+int main()
+{
+  string exp;
+  cout<<"Enter the expression: ";
+  cin>>exp;
+
+  cout<<"Result: ";
+  postfix_evaluation(exp);
+
+  return 0;
+}

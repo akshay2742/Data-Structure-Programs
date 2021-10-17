@@ -154,3 +154,60 @@ int main()
     }
     
 }
+
+//using stack.h
+#include<iostream>
+using namespace std;
+#include "stack.h"
+void add(Stack <int> s);
+
+int main()
+{
+  Stack <int> s1;
+  int n, m;
+  cout<<"Enter total digits in 1st number: ";
+  cin>>n;
+  cout<<"Enter the digits of 1st number: ";
+  for(int i=0; i<n; i++)
+  {
+    cin>>m;
+    s1.push(m);
+  }
+  add(s1);
+
+  return 0;
+}
+
+void add(Stack <int> s1)
+{
+  Stack <int> s2;
+  Stack <int> s3;
+  int n2, m2, ele = 0, temp = 0, carry = 0;
+  cout<<"Enter total digits in 2nd number: ";
+  cin>>n2;
+  cout<<"Enter the digits of 2nd number: ";
+  for(int i=0; i<n2; i++)
+  {
+    cin>>m2;
+    s2.push(m2);
+  }
+
+  while(s1.is_empty() != 0 && s2.is_empty() != 0)
+  {
+    temp = s1.top_ele() + s2.top_ele() + carry;
+    ele = temp%10;
+    s3.push(ele);
+    carry = temp/10;
+    s1.pop();
+    s2.pop();
+  }
+  if(s1.is_empty() == 0 && s2.is_empty() == 0)
+  {
+    s3.push(carry);
+  }
+
+
+  cout<<"\nSum = ";
+  s3.display();
+  cout<<endl;
+}
